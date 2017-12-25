@@ -4,6 +4,8 @@
 #
 #    pip-compile --output-file requirements/base.txt requirements/base.in
 #
+--index-url http://localhost:3141/root/pypi/+simple/
+
 amqp==1.4.9               # via kombu
 anyjson==0.3.3            # via kombu
 certifi==2017.7.27.1      # via requests

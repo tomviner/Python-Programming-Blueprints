@@ -4,7 +4,7 @@ from nameko.extensions import DependencyProvider
 from redis import StrictRedis
 
 
-MESSAGE_LIFETIME = 10000
+MESSAGE_LIFETIME = 10
 
 
 class Redis(DependencyProvider):
@@ -39,7 +39,7 @@ class RedisClient:
 
     def save_message(self, message):
         message_id = uuid4().hex
-        self.redis.set(message_id, message, px=MESSAGE_LIFETIME)
+        self.redis.set(message_id, message, ex=MESSAGE_LIFETIME)
 
         return message_id
 
@@ -63,7 +63,7 @@ class RedisClient:
         return [
             {
                 'id': message_id,
-                'message': self.redis.get(message_id),
+                'message': f'{self.redis.get(message_id)} * {self.redis.pttl(message_id)} + {self.redis.ttl(message_id)}',
                 'expires_in': self.redis.pttl(message_id),
             }
             for message_id in self.redis.keys()

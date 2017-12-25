@@ -5,7 +5,7 @@
 
 <body>
   <h1>TempMessenger</h1>
-  <div></div>
+  <div id="messageContainer"></div>
 
   <form action="/messages" id="postMessage">
     <input type="text" name="message" placeholder="Post message">
@@ -30,7 +30,7 @@
 
   poll();
 
-  function updateMessages(messages) {
+  function updateMessages0(messages) {
     var content = "<div>";
     if (messages.length == 0) {
       content += "<p>No messages!</p>";
@@ -41,6 +41,20 @@
     };
     content += "</div>";
     $("div").replaceWith(content);
+  }
+
+  function updateMessages(messages) {
+    var $messageContainer = $('#messageContainer');
+    var messageList = [];
+    var emptyMessages = '<p>No messages!</p>';
+    if (messages.length === 0) {
+      $messageContainer.html(emptyMessages);
+    } else {
+      $.each(messages, function(index, value) {
+      messageList.push('<p>' + value.message + '</p>');
+    });
+    $messageContainer.html(messageList);
+    }
   }
 
 

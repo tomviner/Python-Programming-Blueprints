@@ -4,5 +4,10 @@
 #
 #    pip-compile --output-file requirements/test.txt requirements/test.in
 #
-py==1.4.34                # via pytest
-pytest==3.2.2
+--index-url http://localhost:3141/root/pypi/+simple/
+
+attrs==17.3.0             # via pytest
+pluggy==0.6.0             # via pytest
+py==1.5.2                 # via pytest
+pytest==3.3.1
+six==1.11.0               # via pytest

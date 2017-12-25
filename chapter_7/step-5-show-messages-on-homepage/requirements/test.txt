@@ -4,6 +4,8 @@
 #
 #    pip-compile --output-file requirements/test.txt requirements/test.in
 #
+--index-url http://localhost:3141/root/pypi/+simple/
+
 fakeredis==0.8.2
 py==1.4.34                # via pytest
 pytest==3.2.2
